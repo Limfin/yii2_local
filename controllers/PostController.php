@@ -5,6 +5,8 @@ namespace app\controllers;
 use Yii;
 // use yii\web\Controller;
 
+use app\models\TestForm;
+
 //отдельно импортировать AppController не нужно, как это делалось со стандартным контроллером (use yii\web\Controller;), т.к. он находится в одной папке с контроллером MyController
 class PostController extends AppController
 {
@@ -36,8 +38,13 @@ class PostController extends AppController
 
 		// $this->debug($names);
 
+
+		$model = new TestForm();
+
+
 		return $this->render('test', [
-			'names' => $names
+			'names' => $names,
+			'model' => $model
 		]);
 	}
 
