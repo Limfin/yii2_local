@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use app\assets\AppAsset;
+use yii\helpers\Html;
 
 AppAsset::register($this);
 ?>
@@ -22,8 +23,25 @@ AppAsset::register($this);
 <body>
 	<?php $this->beginBody() ?>
 
-	<h1>Hello BASIC!</h1>
-	<?= $content ?>
+	<div class="wrap">
+		<div class="container">
+			<ul class="nav nav-pills">
+				<li class="nav-item">
+					<!-- <a class="nav-link active" aria-current="page" href="#">Active</a> -->
+					<?= Html::a('Главная', '/web/', ['class' => 'nav-link active']) ?>
+				</li>
+				<li class="nav-item">
+					<?= Html::a('Статьи', ['post/index'], ['class' => 'nav-link']) ?>
+				</li>
+				<li class="nav-item">
+					<?= Html::a('Статья', ['post/show'], ['class' => 'nav-link']) ?>
+				</li>
+			</ul>
+			<h1>Hello Basic layout</h1>
+			<?= $content ?>
+		</div>
+	</div>
+
 	<?php $this->endBody() ?>
 </body>
 
