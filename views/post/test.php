@@ -18,6 +18,26 @@ debug($names);
 //------------------->
 ?>
 
+<!-- вывод сообщения об успешной валидации формы -->
+<?php if (Yii::$app->session->hasFlash('success')) : ?>
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+		<strong>Данные приняты</strong> 
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+<?php endif; ?>
+
+<!-- вывод сообщения об ошибке при валидации формы -->
+<?php if (Yii::$app->session->hasFlash('error')) : ?>
+	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		<strong>Ошибка! Проверьте данные</strong>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+<?php endif; ?>
+
 <!-- Форма -->
 <?php $form = ActiveForm::begin(['options' => ['class' => 'form-horizontal', 'id' => 'testForm']]) ?>
 <?= $form->field($model, 'name') ?>

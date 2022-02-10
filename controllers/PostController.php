@@ -15,9 +15,10 @@ class PostController extends AppController
 	public $layout = 'basic';
 	//-------------------------->
 
-	public function beforeAction($action) {
+	public function beforeAction($action)
+	{
 
-		if($action->id == 'index') {
+		if ($action->id == 'index') {
 			$this->enableCsrfValidation = false; //отключение проверки csrf токена при отправке запроса методом post
 		}
 		return parent::beforeAction($action);
@@ -26,11 +27,11 @@ class PostController extends AppController
 	public function actionIndex()
 	{
 
-		if(Yii::$app->request->isAjax) {
-			
+		if (Yii::$app->request->isAjax) {
+
 			echo ('<pre>');
 			print_r($_POST);
-			
+
 			return 'test';
 		}
 
@@ -40,6 +41,20 @@ class PostController extends AppController
 
 
 		$model = new TestForm();
+
+		//проверка что данные из формы загружены
+		if ($model->load(Yii::$app->request->post())) {
+
+			//проверка что данные провалидированы
+			if ($model->validate()) {
+				Yii::$app->session->setFlash('success', 'Данные приняты');
+
+				// Перезагрузка формы после успешной отправки.
+				return $this->refresh();
+			} else {
+				Yii::$app->session->setFlash('error', 'Ошибка');
+			}
+		}
 
 
 		return $this->render('test', [
