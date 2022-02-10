@@ -1,3 +1,13 @@
+<?php
+// $this->title = 'One article';
+?>
+
+<!-- Пример передачи данных из вида в шаблон(basic.php) -->
+<?php $this->beginBlock('block1'); ?>
+	<h1>Заголовок страницы</h1>
+<?php $this->endBlock(); ?>
+<!------------------------------------->
+
 <h1>Action Show</h1>
 
 <button class="btn btn-success" id="btn">Click me...</button>
