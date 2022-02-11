@@ -4,7 +4,7 @@
 
 <!-- Пример передачи данных из вида в шаблон(basic.php) -->
 <?php $this->beginBlock('block1'); ?>
-	<h1>Заголовок страницы</h1>
+<h1>Заголовок страницы</h1>
 <?php $this->endBlock(); ?>
 <!------------------------------------->
 
@@ -13,7 +13,7 @@
 <button class="btn btn-success" id="btn">Click me...</button>
 
 <!-- Подключение JS файлов для конкретно этой страницы -->
-<?php 
+<?php
 $this->registerJsFile('@web/js/scripts.js', ['depends' => 'yii\web\YiiAsset']) // @web - это алиас пути до папки web
 ?>
 <!-- ---------------- -->
@@ -29,6 +29,11 @@ $this->registerJs("$('.container').append('<p>SHOW напрямую!!!</p>');", 
 $this->registerCss('.container{background: #ccc}');
 ?>
 <!-- ---------------- -->
+
+<?php
+echo ('<pre>');
+print_r($cats);
+?>
 
 <?php
 

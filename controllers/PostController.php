@@ -6,6 +6,7 @@ use Yii;
 // use yii\web\Controller;
 
 use app\models\TestForm;
+use app\models\Category;
 
 //отдельно импортировать AppController не нужно, как это делалось со стандартным контроллером (use yii\web\Controller;), т.к. он находится в одной папке с контроллером MyController
 class PostController extends AppController
@@ -78,6 +79,17 @@ class PostController extends AppController
 		//добавление мета тега description для страницы show
 		$this->view->registerMetaTag(['name' => 'descripton', 'content' => 'descripton заданный в PostController.php']);
 
-		return $this->render('show');
+
+		$cats = Category::find()->all();
+
+
+
+
+
+
+
+		return $this->render('show', [
+			'cats' => $cats,
+		]);
 	}
 }
