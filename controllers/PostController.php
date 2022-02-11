@@ -125,10 +125,14 @@ class PostController extends AppController
 		// $cats = Category::findBySql($query)->all();
 
 		//лучше использовать такой вариант запроса:
-		$query = "SELECT * FROM users WHERE login LIKE :search";
-		$cats = Category::findBySql($query, [':search' => '%am%'])->all();
+		// $query = "SELECT * FROM users WHERE login LIKE :search";
+		// $cats = Category::findBySql($query, [':search' => '%am%'])->all();
 
+		//отложенная загрузка
+		// $cats = Category::findOne(2);
 
+		//жадная загрузка
+		$cats = Category::find()->with('products')->where(['id' => 2])->all();
 
 
 

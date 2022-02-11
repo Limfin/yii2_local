@@ -33,6 +33,7 @@ $this->registerCss('.container{background: #ccc}');
 <?php
 echo ('<pre>');
 print_r($cats);
+echo count($cats[0]->products);
 ?>
 
 <?php
