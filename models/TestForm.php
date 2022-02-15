@@ -2,16 +2,23 @@
 
 namespace app\models;
 
-use yii\base\Model;
+// use yii\base\Model;
+use yii\db\ActiveRecord;
 
-class TestForm extends Model
+class TestForm extends ActiveRecord
 {
 
-	public $name;
-	public $email;
-	public $text;
+	// public $name;
+	// public $email;
+	// public $text;
 
-	public function attributeLabels() {
+	public static function tableName()
+	{
+		return 'articles';
+	}
+
+	public function attributeLabels()
+	{
 		return [
 			'name' => 'Имя',
 			'email' => 'E-mail',
@@ -19,7 +26,8 @@ class TestForm extends Model
 		];
 	}
 
-	public function rules() {
+	public function rules()
+	{
 		return [
 			//можно по отдельности к каждому инпуту задавать правила валидации либо можно перечислить инпуты в массиве - [['name', 'email'], 'required'],
 			['name', 'required', 'message' => 'Поле обязательно'],
@@ -35,7 +43,7 @@ class TestForm extends Model
 			// ['name', 'string', 'length' => [2,10]],
 
 			//кастомный валидатор myRule, он срабатывает только на сервере. На клиенте(в браузере ошибка не отобразится)
-			['name', 'myRule'],
+			// ['name', 'myRule'],
 
 			//фильтр trim удаляет пробелы в начале и конце сообщения
 			['text', 'trim'],
@@ -43,10 +51,10 @@ class TestForm extends Model
 	}
 
 	//описание функции кастомного валидатора myRule. он срабатывает только на сервере. На клиенте(в браузере ошибка не отобразится)
-	public function myRule($attr) {
-		if(!in_array($this->$attr, ['hello', 'world'])) {
+	public function myRule($attr)
+	{
+		if (!in_array($this->$attr, ['hello', 'world'])) {
 			$this->addError($attr, 'Wrong');
 		}
 	}
-
 }
