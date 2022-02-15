@@ -42,6 +42,10 @@ debug($names);
 <?php $form = ActiveForm::begin(['options' => ['class' => 'form-horizontal', 'id' => 'testForm']]) ?>
 <?= $form->field($model, 'name') ?>
 <?= $form->field($model, 'email')->input('email') ?>
+
+<!-- инпут для выбора даты с помощью виджета - DatePicker из установленного расширения JQuery UI -->
+<?= yii\jui\DatePicker::widget(['name' => 'attributeName']) ?>
+
 <?= $form->field($model, 'text')->textarea(['rows' => 5]) ?>
 <?= Html::submitButton('Отправить', ['class' => 'btn btn-success']) ?>
 <?php ActiveForm::end() ?>
