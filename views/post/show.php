@@ -1,5 +1,8 @@
 <?php
 // $this->title = 'One article';
+
+//импорт своего виджета
+use app\components\MyWidget;
 ?>
 
 <!-- Пример передачи данных из вида в шаблон(basic.php) -->
@@ -9,6 +12,25 @@
 <!------------------------------------->
 
 <h1>Action Show</h1>
+
+
+<?php
+
+// вывод своего виджета без параметров, значение "name" будет взято значение заданное по умолчанию из MyWidget.php в функции init()
+echo MyWidget::widget();
+
+// передача параметров в виджет
+echo MyWidget::widget(['name' => 'Alex']);
+
+?>
+
+<!-- вывод пользовательского контента в виджете -->
+<?php MyWidget::begin(['name' => 'Boris']) ?>
+<h1>hello, world!!!</h1>
+<?php MyWidget::end() ?>
+<!-- ------------------------------------------ -->
+
+
 
 <button class="btn btn-success" id="btn">Click me...</button>
 
@@ -31,9 +53,9 @@ $this->registerCss('.container{background: #ccc}');
 <!-- ---------------- -->
 
 <?php
-echo ('<pre>');
-print_r($cats);
-echo count($cats[0]->products);
+// echo ('<pre>');
+// print_r($cats);
+// echo count($cats[0]->products);
 ?>
 
 <?php
