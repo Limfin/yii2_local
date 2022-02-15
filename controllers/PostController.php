@@ -40,6 +40,21 @@ class PostController extends AppController
 
 		// $this->debug($names);
 
+		//добавление данных в БД в таблицу, к которой относится модель TestForm, в поле email
+		// $post = TestForm::findOne(3);
+		// $post->email = '2@2.com';
+		// $post->save();
+
+		//удаление строки из БД
+		// $post = TestForm::findOne(2);
+		// $post->delete();
+
+		//удаление всез записей из таблицы, где id больше 3
+		// TestForm::deleteAll(['>', 'id', 3])
+
+		//удаление полностью всез записей из таблицы
+		// TestForm::deleteAll(['>', 'id', 3])
+
 
 		$model = new TestForm();
 
