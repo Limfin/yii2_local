@@ -2,6 +2,7 @@
 // подключение виджетов для формы
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use mihaildev\ckeditor\CKEditor;
 ?>
 
 <h1>Test Action</h1>
@@ -21,7 +22,7 @@ debug($names);
 <!-- вывод сообщения об успешной валидации формы -->
 <?php if (Yii::$app->session->hasFlash('success')) : ?>
 	<div class="alert alert-success alert-dismissible fade show" role="alert">
-		<strong>Данные приняты</strong> 
+		<strong>Данные приняты</strong>
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
@@ -46,7 +47,20 @@ debug($names);
 <!-- инпут для выбора даты с помощью виджета - DatePicker из установленного расширения JQuery UI -->
 <?= yii\jui\DatePicker::widget(['name' => 'attributeName']) ?>
 
-<?= $form->field($model, 'text')->textarea(['rows' => 5]) ?>
+<?php //echo $form->field($model, 'text')->textarea(['rows' => 5]) ?>
+
+<!-- подключение виджета CKEditor вместо текстового поля -->
+<?php
+echo $form->field($model, 'text')->widget(CKEditor::className(), [
+	'editorOptions' => [
+		'preset' => 'full', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+		'inline' => false, //по умолчанию false
+	],
+]);
+?>
+
 <?= Html::submitButton('Отправить', ['class' => 'btn btn-success']) ?>
 <?php ActiveForm::end() ?>
 <!----------------------------->
+
+
