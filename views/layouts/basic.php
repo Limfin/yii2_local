@@ -29,7 +29,8 @@ AppAsset::register($this);
 			<ul class="nav nav-pills">
 				<li class="nav-item">
 					<!-- <a class="nav-link active" aria-current="page" href="#">Active</a> -->
-					<?= Html::a('Главная', '/web/', ['class' => 'nav-link active']) ?>
+					<!-- <?= Html::a('Главная', '/web/', ['class' => 'nav-link active']) ?> -->
+					<?= Html::a('Главная', '/', ['class' => 'nav-link active']) ?>
 				</li>
 				<li class="nav-item">
 					<?= Html::a('Статьи', ['post/index'], ['class' => 'nav-link']) ?>

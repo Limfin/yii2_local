@@ -5,6 +5,8 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
 	'id' => 'basic',
+	//назначение глобальной переменной. далее ее можно вызывать в коде с помощью - Yii::$app->name
+	'name' => 'Мой Сайт',
 	'basePath' => dirname(__DIR__),
 	'bootstrap' => ['log'],
 	'language' => 'ru',
@@ -19,6 +21,7 @@ $config = [
 		'request' => [
 			// !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
 			'cookieValidationKey' => '47zu1-0sMr0N4M8Ao-_1KKH9SOqL2aGg',
+			'baseUrl' => '',
 		],
 		'cache' => [
 			'class' => 'yii\caching\FileCache',
@@ -47,14 +50,40 @@ $config = [
 			],
 		],
 		'db' => $db,
-		/*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        */
+
+		//настройка ЧПУ
+		'urlManager' => [
+			'enablePrettyUrl' => true,
+			'showScriptName' => false,
+
+			//добавляет заданное значение к урлу, в данном случае добавить: '.html'
+			'suffix' => '.html',
+			'rules' => [
+
+				//определение правил в виде массива
+				[
+					'pattern' => '',
+					'route' => 'site/index',
+					'suffix' => '',
+				],
+
+				'post' => 'post/index',
+				'article' => 'post/show',
+
+				//можно перечислить все правила
+				// 'about' => 'site/about',
+				// 'contact' => 'site/contact',
+				// 'login' => 'site/login',
+
+				// или можно использовать регулярное выражение, которое сокращает три верхних записи в одну
+				// '<action:(about|contact|login)>' => 'site/<action>',
+
+				//либо можно еще сократить. "\w+" - означает что может использоваться любое значение в action
+				'<action:\w+>' => 'site/<action>',
+
+			],
+		],
+
 	],
 	'params' => $params,
 ];
